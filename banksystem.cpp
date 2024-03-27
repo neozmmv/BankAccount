@@ -61,40 +61,35 @@ int main()
     char operation;
     cin >> operation;
 
-    if(operation == '1')
+    switch (operation)
     {
+    case '1':
         file.open("conta1.txt", ios:: out);
         if(file.is_open())
         {
             file << conta1.withdraw() << endl;
         }
         file.close();
-    }
-
-    else if(operation == '2')
-    {
+        break;
+    case '2':
         file.open("conta1.txt", ios::out);
         if(file.is_open())
         {
             file << conta1.add() << endl;
         }
         file.close();
-    }
-
-    else if(operation == '3')
-    {
+        break;
+    case '3':
         cout << "Current balance is: " << conta1.balance << endl;
+        break;
         return 1;
-    }
-    
-    else if(operation == '4')
-    {
-        cout << "Exiting!\n" << endl;
+    case '4':
+        cout << "\nExiting!\n" << endl;
+        break;
         return 1;
-    }
-    else
-    {
-        cout << "Invalid operation!\n";
+    default:
+        cout << "\nInvalid operation!\n";
+        break;
         return 2;
     }
 }
