@@ -33,7 +33,7 @@ int main()
         fclose(balance_source);
         printf("Amount withdrawn: %.2f. New Balance: %.2f\n\n", withdraw, balance - withdraw);
     }
-    if(operator == 2)
+    else if(operator == 2)
     {
         balance_source = fopen("balance.txt", "r+");
         printf("\nDeposit: ");
@@ -42,13 +42,18 @@ int main()
         fclose(balance_source);
         printf("Amount deposited: %.2f. New Balance: %.2f\n\n", deposit, balance + deposit);
     }
-    if(operator == 3)
+    else if(operator == 3)
     {
         printf("\nBalance: %.2f\n", balance);
     }
-    if(operator == 4)
+    else if(operator == 4)
     {
         printf("\nExiting!\n");
+        return 1;
+    }
+    else
+    {
+        printf("\nInvalid operation!\n");
         return 1;
     }
     free(text);
