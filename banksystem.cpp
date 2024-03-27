@@ -12,7 +12,7 @@ class BankAccount
     float balance, deposit_amount, withdraw_amount;
     float add()
     {
-        cout << "Insert deposit amount: ";
+        cout << "\nInsert deposit amount: ";
         cin >> amount;
         deposit_amount = balance + amount;
         cout << "Amount deposited: " << amount << ". Current balance: " << deposit_amount << endl;
@@ -20,7 +20,7 @@ class BankAccount
     }
     float withdraw()
     {
-        cout << "Insert withdraw amount: ";
+        cout << "\nInsert withdraw amount: ";
         cin >> amount;
         withdraw_amount = balance - amount;
         cout << "Amount withdrawn: " << amount << ". Current balance: " << withdraw_amount << endl;
@@ -33,13 +33,25 @@ int main()
     BankAccount conta1;
     fstream file;
     file.open("conta1.txt", ios::in);
+
+    if(!file)
+    {
+        file.open("conta1.txt", ios::out);
+        float newBalance;
+        cout << "It seems like you don't have an account!" << endl;
+        cout << "Insert your current balance: ";
+        cin >> newBalance;
+        file << newBalance << endl;
+        file.close();
+        return 3;
+    }
     if(file.is_open())
     {
         string line;
         while(getline(file, line))
         {
             conta1.balance = stof(line);
-            cout << line << endl;
+            cout << "Current balance: " << line << endl;
         }
     }
     file.close();
