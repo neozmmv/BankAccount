@@ -41,6 +41,7 @@ int main()
         cout << "It seems like you don't have an account!" << endl;
         cout << "Insert your current balance: ";
         cin >> newBalance;
+        cout << "Account successfully created!" << endl;
         file << newBalance << endl;
         file.close();
         return 3;
