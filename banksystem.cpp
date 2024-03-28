@@ -14,6 +14,11 @@ class BankAccount
     {
         cout << "\nInsert deposit amount: ";
         cin >> amount;
+        if(amount < 0)
+        {
+            cout << "Must deposit a positive value!\n";
+            return balance;
+        }
         deposit_amount = balance + amount;
         cout << "Amount deposited: " << amount << ". Current balance: " << deposit_amount << endl;
         return deposit_amount;
@@ -22,6 +27,16 @@ class BankAccount
     {
         cout << "\nInsert withdraw amount: ";
         cin >> amount;
+        if(amount > balance)
+        {
+            cout << "Insufficient funds!\n";
+            return balance;
+        }
+        if(amount < 0)
+        {
+            cout << "Cannot withdraw a negative amount!\n";
+            return balance;
+        }
         withdraw_amount = balance - amount;
         cout << "Amount withdrawn: " << amount << ". Current balance: " << withdraw_amount << endl;
         return withdraw_amount;
