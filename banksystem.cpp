@@ -67,7 +67,7 @@ int main()
         while(getline(file, line))
         {
             conta1.balance = stof(line);
-            cout << "Current balance: " << line << endl;
+            cout << "Welcome to the Bank!\nYour current balance is: " << line << endl;
         }
     }
     file.close();
@@ -95,7 +95,7 @@ int main()
         file.close();
         break;
     case '3':
-        cout << "Current balance is: " << conta1.balance << endl;
+        cout << "\nYour current balance is: " << conta1.balance << endl;
         break;
         return 1;
     case '4':
