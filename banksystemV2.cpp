@@ -40,14 +40,42 @@ public:
 };
 
 int main() {
-    BankAccount conta1;
+    BankAccount account;
     fstream file;
-    file.open("database.csv", ios::in);
+    
     int linecount = 0;
     int accountNumber;
+    int option;
+
+    cout << "Welcome to the bank!\n";
+    cout << "Insert 0 to create new account\n";
+    cout << "Insert 1 to login\n";
+    cin >> option;
+    if(option == 0)
+    {
+        file.open("database.csv", ios::app);
+        string username;
+        float userbalance;
+        cout << "Insert owner name: ";
+        cin >> username;
+        cout << "Insert current balance: ";
+        cin >> userbalance;
+        file << username << ',' << userbalance << endl;
+        cout << "Account sucessfully created!\n";
+        file.close();
+        return 1;
+    }
+    else if(option == 1)
+    {
     cout << "What account do you want to access?: ";
     cin >> accountNumber;
-
+    }
+    else
+    {
+        cout << "Invalid operation!\n";
+        return 1;
+    }
+    file.open("database.csv", ios::in);
     if (!file)
     {
         string name;
@@ -77,7 +105,8 @@ int main() {
     stringstream linestream(lines[accountNumber]);
     vector<string> tokens;
     string intermediate;
-    while (getline(linestream, intermediate, ',')) {
+    while (getline(linestream, intermediate, ','))
+    {
         tokens.push_back(intermediate);
     }
 
@@ -86,7 +115,7 @@ int main() {
         return 1;
     }
 
-    conta1.balance = stof(tokens[1]);
+    account.balance = stof(tokens[1]);
 
     cout << "\n1 - Withdraw\n2 - Deposit\n3 - Balance\n4 - Exit\n\n";
     char operation;
@@ -102,13 +131,13 @@ int main() {
             cout << "Invalid withdraw amount!" << endl;
             return 1;
         }
-        if (withdrawAmount > conta1.balance) {
+        if (withdrawAmount > account.balance) {
             cout << "Insufficient funds!" << endl;
             return 1;
         }
-        conta1.balance -= withdrawAmount;
-        cout << "Your current balance is: " << conta1.balance << endl;
-        lines[accountNumber] = tokens[0] + "," + to_string(conta1.balance);
+        account.balance -= withdrawAmount;
+        cout << "Your current balance is: " << account.balance << endl;
+        lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
         break;
     case '2':
         // Deposit logic
@@ -119,13 +148,13 @@ int main() {
             cout << "Invalid deposit amount!" << endl;
             return 1;
         }
-        conta1.balance += depositAmount;
-        cout << "Your current balance is: " << conta1.balance << endl;
-        lines[accountNumber] = tokens[0] + "," + to_string(conta1.balance);
+        account.balance += depositAmount;
+        cout << "Your current balance is: " << account.balance << endl;
+        lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
         break;
     case '3':
         cout << "\nHello, " << tokens[0] << endl;
-        cout << "Your current balance is: " << conta1.balance << endl;
+        cout << "Your current balance is: " << account.balance << endl;
         break;
     case '4':
         cout << "\nExiting!\n" << endl;
