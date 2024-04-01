@@ -166,7 +166,7 @@ int main()
         return 1;
     }
 
-    file.open("database.csv", ios::out | ios::trunc);
+    file.open("database.csv", ios::out);
     if (!file) {
         cout << "Error opening file!" << endl;
         return 1;
