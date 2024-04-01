@@ -102,6 +102,13 @@ int main()
         linecount++;
     }
 
+    if(accountNumber > linecount)
+    {
+        cout << "Invalid account!\n";
+        cout << "Highest account index is: " << linecounter() -1 << endl;
+        return 1;
+    }
+
     file.close();
 
     stringstream linestream(lines[accountNumber]);
