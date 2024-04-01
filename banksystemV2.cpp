@@ -6,6 +6,8 @@
 
 using namespace std;
 
+int linecounter();
+
 class BankAccount {
 private:
     float amount;
@@ -39,10 +41,10 @@ public:
     }
 };
 
-int main() {
+int main()
+{
     BankAccount account;
     fstream file;
-    
     int linecount = 0;
     int accountNumber;
     int option;
@@ -61,7 +63,7 @@ int main() {
         cout << "Insert current balance: ";
         cin >> userbalance;
         file << username << ',' << userbalance << endl;
-        cout << "Account sucessfully created!\n";
+        cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
         file.close();
         return 1;
     }
@@ -177,4 +179,17 @@ int main() {
     file.close();
 
     return 0;
+}
+
+int linecounter()
+{
+    fstream file;
+    int linecount = 0;
+    string templinecounter;
+    file.open("database.csv", ios::in);
+    while(getline(file, templinecounter))
+    {
+        linecount++;
+    }
+    return linecount;
 }
