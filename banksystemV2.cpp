@@ -191,5 +191,6 @@ int linecounter()
     {
         linecount++;
     }
+    file.close();
     return linecount;
 }
