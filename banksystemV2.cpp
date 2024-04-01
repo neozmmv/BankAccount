@@ -50,15 +50,15 @@ int main()
     int option;
 
     cout << "Welcome to the bank!\n";
-    cout << "Insert 0 to create new account\n";
-    cout << "Insert 1 to login\n";
+    cout << "1 - Create new account\n";
+    cout << "2 - Login\n\n";
     cin >> option;
-    if(option == 0)
+    if(option == 1)
     {
         file.open("database.csv", ios::app);
         string username;
         float userbalance;
-        cout << "Insert owner name: ";
+        cout << "\nInsert owner name: ";
         cin >> username;
         cout << "Insert current balance: ";
         cin >> userbalance;
@@ -67,9 +67,9 @@ int main()
         file.close();
         return 1;
     }
-    else if(option == 1)
+    else if(option == 2)
     {
-    cout << "What account do you want to access?: ";
+    cout << "\nWhat account do you want to access?: ";
     cin >> accountNumber;
     }
     else
