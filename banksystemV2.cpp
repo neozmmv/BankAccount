@@ -66,6 +66,7 @@ int main()
     cin >> option;
     if(option == 1)
     {
+        system("cls");
         file.open("database.csv", ios::app);
         string username;
         float userbalance;
@@ -81,11 +82,13 @@ int main()
     }
     else if(option == 2)
     {
-    cout << "\nWhat account do you want to access?: ";
-    cin >> accountNumber;
+        system("cls");
+        cout << "\nWhat account do you want to access?: ";
+        cin >> accountNumber;
     }
     else if(option == 3)
     {
+        system("cls");
         cout << "\nExiting!\n";
         Sleep(2000);
         return 1;
@@ -93,11 +96,13 @@ int main()
     else
     {
         cout << "Invalid operation!\n";
+        Sleep(2000);
         return 1;
     }
     file.open("database.csv", ios::in);
     if (!file)
     {
+        system("cls");
         string name;
         float balance;
         cout << "Error opening file!" << endl;
@@ -108,6 +113,7 @@ int main()
         cin >> balance;
         file << name << ',' << balance << endl;
         file.close();
+        system("pause");
         return 1;
     }
 
@@ -122,6 +128,7 @@ int main()
 
     if(accountNumber > linecount)
     {
+        system("cls");
         cout << "Invalid account!\n";
         cout << "Highest account index is: " << linecounter() -1 << endl;
         system("pause");
@@ -154,6 +161,7 @@ int main()
     {
     case '1':
         // Withdraw logic
+        system("cls");
         float withdrawAmount;
         cout << "Insert withdraw amount: ";
         cin >> withdrawAmount;
@@ -175,6 +183,7 @@ int main()
         break;
     case '2':
         // Deposit logic
+        system("cls");
         float depositAmount;
         cout << "Insert deposit amount: ";
         cin >> depositAmount;
@@ -189,11 +198,13 @@ int main()
         lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
         break;
     case '3':
+        system("cls");
         cout << "\nHello, " << tokens[0] << endl;
         cout << "Your current balance is: " << account.balance << endl;
         system("pause");
         break;
     case '4':
+        system("cls");
         cout << "\nExiting!\n" << endl;
         return 0;
     default:
