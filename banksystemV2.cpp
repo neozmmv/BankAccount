@@ -3,20 +3,24 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <cstdlib>
+#include <windows.h>
 
 using namespace std;
 
 int linecounter();
 
-class BankAccount {
+class BankAccount{
 private:
     float amount;
 public:
     float balance;
-    float add(float currentBalance) {
+    float add(float currentBalance) 
+    {
         cout << "\nInsert deposit amount: ";
         cin >> amount;
-        if (amount < 0) {
+        if (amount < 0)
+        {
             cout << "Must deposit a positive value!\n";
             return currentBalance;
         }
@@ -24,19 +28,25 @@ public:
         cout << "Amount deposited: " << amount << ". Current balance: " << currentBalance << endl;
         return currentBalance;
     }
-    float withdraw(float currentBalance) {
+    float withdraw(float currentBalance)
+    {
         cout << "\nInsert withdraw amount: ";
         cin >> amount;
-        if (amount > currentBalance) {
+        if (amount > currentBalance)
+        {
             cout << "Insufficient funds!\n";
+            system("pause");
             return currentBalance;
         }
-        if (amount < 0) {
+        if (amount < 0)
+        {
             cout << "Cannot withdraw a negative amount!\n";
+            system("pause");
             return currentBalance;
         }
         currentBalance -= amount;
         cout << "Amount withdrawn: " << amount << ". Current balance: " << currentBalance << endl;
+        system("pause");
         return currentBalance;
     }
 };
@@ -51,7 +61,8 @@ int main()
 
     cout << "Welcome to the bank!\n";
     cout << "1 - Create new account\n";
-    cout << "2 - Login\n\n";
+    cout << "2 - Login\n";
+    cout << "3 - Exit\n\n";
     cin >> option;
     if(option == 1)
     {
@@ -65,12 +76,19 @@ int main()
         file << username << ',' << userbalance << endl;
         cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
         file.close();
+        system("pause");
         return 1;
     }
     else if(option == 2)
     {
     cout << "\nWhat account do you want to access?: ";
     cin >> accountNumber;
+    }
+    else if(option == 3)
+    {
+        cout << "\nExiting!\n";
+        Sleep(2000);
+        return 1;
     }
     else
     {
@@ -106,6 +124,7 @@ int main()
     {
         cout << "Invalid account!\n";
         cout << "Highest account index is: " << linecounter() -1 << endl;
+        system("pause");
         return 1;
     }
 
@@ -119,7 +138,8 @@ int main()
         tokens.push_back(intermediate);
     }
 
-    if (tokens.size() != 2) {
+    if (tokens.size() != 2)
+    {
         cout << "Invalid data format in the file!" << endl;
         return 1;
     }
@@ -130,18 +150,23 @@ int main()
     char operation;
     cin >> operation;
 
-    switch (operation) {
+    switch (operation)
+    {
     case '1':
         // Withdraw logic
         float withdrawAmount;
         cout << "Insert withdraw amount: ";
         cin >> withdrawAmount;
-        if (withdrawAmount < 0) {
+        if (withdrawAmount < 0)
+        {
             cout << "Invalid withdraw amount!" << endl;
+            system("pause");
             return 1;
         }
-        if (withdrawAmount > account.balance) {
+        if (withdrawAmount > account.balance)
+        {
             cout << "Insufficient funds!" << endl;
+            system("pause");
             return 1;
         }
         account.balance -= withdrawAmount;
@@ -153,8 +178,10 @@ int main()
         float depositAmount;
         cout << "Insert deposit amount: ";
         cin >> depositAmount;
-        if (depositAmount < 0) {
+        if (depositAmount < 0)
+        {
             cout << "Invalid deposit amount!" << endl;
+            system("pause");
             return 1;
         }
         account.balance += depositAmount;
@@ -164,27 +191,31 @@ int main()
     case '3':
         cout << "\nHello, " << tokens[0] << endl;
         cout << "Your current balance is: " << account.balance << endl;
+        system("pause");
         break;
     case '4':
         cout << "\nExiting!\n" << endl;
         return 0;
     default:
         cout << "\nInvalid operation!\n";
+        system("pause");
         return 1;
     }
 
     file.open("database.csv", ios::out);
-    if (!file) {
+    if (!file)
+    {
         cout << "Error opening file!" << endl;
+        system("pause");
         return 1;
     }
 
-    for (const auto &line : lines) {
+    for (const auto &line : lines)
+    {
         file << line << endl;
     }
 
     file.close();
-
     return 0;
 }
 
