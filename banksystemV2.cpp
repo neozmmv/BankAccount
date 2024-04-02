@@ -59,7 +59,10 @@ int main()
     int accountNumber;
     int option;
 
-    cout << "Welcome to the bank!\n";
+    cout << "************************\n";
+    cout << "* Welcome to the Bank! *\n";
+    cout << "************************\n\n";
+
     cout << "1 - Create new account\n";
     cout << "2 - Login\n";
     cout << "3 - Exit\n\n";
