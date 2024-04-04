@@ -26,6 +26,7 @@ public:
         }
         currentBalance += amount;
         cout << "Amount deposited: " << amount << ". Current balance: " << currentBalance << endl;
+        system("pause");
         return currentBalance;
     }
     float withdraw(float currentBalance)
@@ -183,6 +184,7 @@ int main()
         account.balance -= withdrawAmount;
         cout << "Your current balance is: " << account.balance << endl;
         lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
+        system("pause");
         break;
     case '2':
         // Deposit logic
@@ -199,6 +201,7 @@ int main()
         account.balance += depositAmount;
         cout << "Your current balance is: " << account.balance << endl;
         lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
+        system("pause");
         break;
     case '3':
         system("cls");
