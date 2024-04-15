@@ -9,7 +9,8 @@
 using namespace std;
 
 int linecounter();
-
+int menu();
+int menuoption;
 class BankAccount{
 private:
     float amount;
@@ -54,12 +55,30 @@ public:
 
 int main()
 {
+    menu();
+}
+
+int linecounter()
+{
+    fstream file;
+    int linecount = 0;
+    string templinecounter;
+    file.open("database.csv", ios::in);
+    while(getline(file, templinecounter))
+    {
+        linecount++;
+    }
+    file.close();
+    return linecount;
+}
+
+int menu()
+{
     BankAccount account;
     fstream file;
     int linecount = 0;
     int accountNumber;
     int option;
-
     cout << "************************\n";
     cout << "* Welcome to the Bank! *\n";
     cout << "************************\n\n";
@@ -80,9 +99,19 @@ int main()
         cin >> userbalance;
         file << username << ',' << userbalance << endl;
         cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
-        file.close();
-        system("pause");
-        return 1;
+        cout << "\n1 - Menu\n2 - Exit\n\n";
+        cin >> menuoption;
+        if(menuoption == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else if(menuoption == 2)
+        {
+            file.close();
+            system("pause");
+            return 1;
+        }
     }
     else if(option == 2)
     {
@@ -184,7 +213,18 @@ int main()
         account.balance -= withdrawAmount;
         cout << "Your current balance is: " << account.balance << endl;
         lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
-        system("pause");
+        cout << "\n1 - Menu" << endl;
+        cout << "2 - Exit" << endl;
+        cin >> menuoption;
+        if(menuoption == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else if(menuoption == 2);
+        {
+            system("pause");
+        }
         break;
     case '2':
         // Deposit logic
@@ -201,13 +241,35 @@ int main()
         account.balance += depositAmount;
         cout << "Your current balance is: " << account.balance << endl;
         lines[accountNumber] = tokens[0] + "," + to_string(account.balance);
-        system("pause");
+        cout << "\n1 - Menu" << endl;
+        cout << "2 - Exit" << endl;
+        cin >> menuoption;
+        if(menuoption == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else if(menuoption == 2)
+        {
+            system("pause");
+        }
         break;
     case '3':
         system("cls");
         cout << "\nHello, " << tokens[0] << endl;
         cout << "Your current balance is: " << account.balance << endl;
-        system("pause");
+        cout << "\n1 - Menu" << endl;
+        cout << "2 - Exit" << endl;
+        cin >> menuoption;
+        if(menuoption == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else if(menuoption == 2)
+        {
+            system("pause");
+        }
         break;
     case '4':
         system("cls");
@@ -234,18 +296,4 @@ int main()
 
     file.close();
     return 0;
-}
-
-int linecounter()
-{
-    fstream file;
-    int linecount = 0;
-    string templinecounter;
-    file.open("database.csv", ios::in);
-    while(getline(file, templinecounter))
-    {
-        linecount++;
-    }
-    file.close();
-    return linecount;
 }
