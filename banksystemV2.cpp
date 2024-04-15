@@ -112,6 +112,12 @@ int menu()
             system("pause");
             return 1;
         }
+        else
+        {
+            cout << "Invalid operation!\n";
+            system("pause");
+            return 1;
+        }
     }
     else if(option == 2)
     {
@@ -221,9 +227,15 @@ int menu()
             system("cls");
             menu();
         }
-        else if(menuoption == 2);
+        else if(menuoption == 2)
         {
             system("pause");
+        }
+        else
+        {
+            cout << "Invalid operation!" << endl;
+            system("pause");
+            return 1;
         }
         break;
     case '2':
@@ -253,6 +265,12 @@ int menu()
         {
             system("pause");
         }
+        else
+        {
+            cout << "Invalid operation!" << endl;
+            system("pause");
+            return 1;
+        }
         break;
     case '3':
         system("cls");
@@ -269,6 +287,12 @@ int menu()
         else if(menuoption == 2)
         {
             system("pause");
+        }
+        else
+        {
+            cout << "Invalid operation!" << endl;
+            system("pause");
+            return 1;
         }
         break;
     case '4':
