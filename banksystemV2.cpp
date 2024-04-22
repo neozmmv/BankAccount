@@ -9,6 +9,7 @@
 using namespace std;
 
 int linecounter();
+void createAccount();
 int menu();
 int menuoption;
 class BankAccount{
@@ -76,6 +77,27 @@ int menu()
 {
     BankAccount account;
     fstream file;
+    file.open("database.csv", ios::in);
+    if(!file)
+    {
+        cout << "It seems like you don't have an account!\n";
+        createAccount();
+        cout << "\n1 - Menu\n2 - Exit\n\n";
+        cin >> menuoption;
+        if(menuoption == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else if(menuoption == 2)
+        {
+            return 1;
+        }
+    }
+    else
+    {
+        file.close();
+    }
     int linecount = 0;
     int accountNumber;
     int option;
@@ -90,15 +112,7 @@ int menu()
     if(option == 1)
     {
         system("cls");
-        file.open("database.csv", ios::app);
-        string username;
-        float userbalance;
-        cout << "\nInsert owner name: ";
-        cin >> username;
-        cout << "Insert current balance: ";
-        cin >> userbalance;
-        file << username << ',' << userbalance << endl;
-        cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
+        createAccount();
         cout << "\n1 - Menu\n2 - Exit\n\n";
         cin >> menuoption;
         if(menuoption == 1)
@@ -320,4 +334,19 @@ int menu()
 
     file.close();
     return 0;
+}
+
+void createAccount()
+{
+    fstream file;
+    file.open("database.csv", ios::app);
+    string username;
+    float userbalance;
+    cout << "\nInsert owner name: ";
+    cin >> username;
+    cout << "Insert current balance: ";
+    cin >> userbalance;
+    file << username << ',' << userbalance << endl;
+    cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
+    file.close();
 }
