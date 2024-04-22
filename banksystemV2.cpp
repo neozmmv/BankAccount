@@ -11,6 +11,7 @@ using namespace std;
 int linecounter();
 void createAccount();
 int menu();
+void quit();
 int menuoption;
 class BankAccount{
 private:
@@ -141,9 +142,7 @@ int menu()
     }
     else if(option == 3)
     {
-        system("cls");
-        cout << "\nExiting!\n";
-        Sleep(2000);
+        quit();
         return 1;
     }
     else
@@ -153,23 +152,6 @@ int menu()
         return 1;
     }
     file.open("database.csv", ios::in);
-    if (!file)
-    {
-        system("cls");
-        string name;
-        float balance;
-        cout << "Error opening file!" << endl;
-        file.open("database.csv", ios::out);
-        cout << "Insert owner's name: ";
-        cin >> name;
-        cout << "Insert current balance: ";
-        cin >> balance;
-        file << name << ',' << balance << endl;
-        file.close();
-        system("pause");
-        return 1;
-    }
-
     string line;
     vector<string> lines;
 
@@ -243,7 +225,8 @@ int menu()
         }
         else if(menuoption == 2)
         {
-            system("pause");
+            quit();
+            return 1;
         }
         else
         {
@@ -300,7 +283,8 @@ int menu()
         }
         else if(menuoption == 2)
         {
-            system("pause");
+            quit();
+            return 1;
         }
         else
         {
@@ -310,13 +294,14 @@ int menu()
         }
         break;
     case '4':
-        system("cls");
-        cout << "\nExiting!\n" << endl;
-        return 0;
+        quit();
+        return 1;
+        break;
     default:
         cout << "\nInvalid operation!\n";
         system("pause");
         return 1;
+        break;
     }
 
     file.open("database.csv", ios::out);
@@ -349,4 +334,12 @@ void createAccount()
     file << username << ',' << userbalance << endl;
     cout << "Account sucessfully created with index " << linecounter() - 1 << endl;
     file.close();
+}
+
+void quit()
+{
+    system("cls");
+    cout << "\nExiting!\n" << endl;
+    Sleep(1500);
+    return;
 }
